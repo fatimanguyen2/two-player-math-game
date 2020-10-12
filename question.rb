@@ -9,4 +9,9 @@ class Question
   def addition
     "What is #{first_num} + #{second_num}?"
   end
+
+  def validate?(num)
+    num == answer
+  end
+
 end

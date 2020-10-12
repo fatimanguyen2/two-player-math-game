@@ -17,8 +17,7 @@ class Game
 
     puts "#{current_player.name}: #{question.addition}"
     answer = gets.chomp.to_i
-    puts "#{answer}"
-
+    puts question.validate?(answer)
   end
 
   def round
