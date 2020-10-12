@@ -1,4 +1,5 @@
 require './player'
+require './question'
 
 class Game
   attr_accessor :player1, :player2
@@ -8,8 +9,24 @@ class Game
   end
 
   def start
-    p player1
-    p player2
-    # puts 'Starting game...'
+    puts 'Starting game...'
+    players = [@player1, @player2]
+    current_player = players[0] ######################TO INVERSE PLAYERS LATER!!!!!!!!!
+    question = Question.new
+
+
+    puts "#{current_player.name}: #{question.addition}"
+    answer = gets.chomp.to_i
+    puts "#{answer}"
+
   end
+
+  def round
+  end
+
+  def end
+    puts "PLAYER???? wins with a score ???/3"
+    puts '----- GAME OVER -----'
+  end
+
 end
