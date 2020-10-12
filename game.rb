@@ -4,20 +4,32 @@ require './question'
 class Game
   attr_accessor :player1, :player2
   def initialize
-    self.player1 = Player.new('Player 1')
-    self.player2 = Player.new('Player 2')
+    self.player1 = Player.new('1')
+    self.player2 = Player.new('2')
   end
 
   def start
-    puts 'Starting game...'
-    players = [@player1, @player2]
+    players = [player1, player2]
     current_player = players[0] ######################TO INVERSE PLAYERS LATER!!!!!!!!!
-    question = Question.new
+    other_player = players[1]
+    
+    puts 'Starting game...'
+    while (current_player.lives > 0 && other_player.lives > 0)
+      question = Question.new
+      puts "Player #{current_player.name}: #{question.addition}"
 
+      answer = gets.chomp.to_i
 
-    puts "#{current_player.name}: #{question.addition}"
-    answer = gets.chomp.to_i
-    puts question.validate?(answer)
+      if question.validate?(answer)
+        puts "Player #{current_player.name}: YES! You are correct"
+      else
+        puts "Player #{current_player.name}: Seriously? No!"
+        current_player.lose_life
+      end
+
+      puts "P#{current_player.name}: #{current_player.lives}/3 vs P#{other_player.name}: #{other_player.lives}/3"
+    end
+    
   end
 
   def round
